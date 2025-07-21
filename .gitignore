@@ -1,0 +1,9 @@
+# Environment
+env.yml
+.env
+__pycache__/
+
+# Models & artifacts
+*.pt
+*.onnx
+AGENTS.md
