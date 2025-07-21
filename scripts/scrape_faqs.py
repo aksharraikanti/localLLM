@@ -6,6 +6,7 @@ import argparse
 import json
 import time
 import requests
+import os
 from bs4 import BeautifulSoup
 
 def scrape_faq_page(url):
