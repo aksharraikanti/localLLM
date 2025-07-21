@@ -32,6 +32,11 @@ fi
 source "$(conda info --base)/etc/profile.d/conda.sh"
 conda activate local-llm
 
+echo "\n== Python dependencies =="
+pip install --upgrade pip
+pip install transformers bitsandbytes accelerate peft onnxruntime fastapi streamlit uvicorn \
+  beautifulsoup4 requests pydantic python-dotenv pytest
+
 echo "\n== Docker Desktop (Apple Silicon) =="
 if ! command -v docker &> /dev/null; then
   echo "Docker not found. Please install Docker Desktop for Mac (Apple Silicon)."
