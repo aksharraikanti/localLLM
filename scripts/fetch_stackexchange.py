@@ -91,7 +91,6 @@ def main():
         os.makedirs(output_dir, exist_ok=True)
     with open(args.output, "w", encoding="utf-8") as f:
         json.dump(questions, f, ensure_ascii=False, indent=2)
-
-
+    print(f"Successfully saved {len(questions)} questions to {args.output}.")
 if __name__ == "__main__":
     main()
