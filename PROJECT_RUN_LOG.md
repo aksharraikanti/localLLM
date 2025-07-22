@@ -69,3 +69,13 @@ At end of tomorrow’s work, append “Action 2” summary here with outcomes an
 - Appended this Action 3 summary and day-of-work details.
 
 At end of day, implement placeholder test and proceed to flesh out fetch logic under Action 4.
+
+## Action 4: Implement Fetch Logic (Day 4)
+
+**4.1 fetch_questions Implementation**
+- Added real API calls to Stack Exchange `/questions` endpoint with pagination, rate-limit sleep, and body filter.
+
+**4.2 Unit Tests for Pagination**
+- Extended `tests/test_fetch_stackexchange.py` with `test_fetch_questions_pagination` mocking `requests.get` to verify loop logic.
+
+At end of day, run integration fetch on a small tag set and draft scraping scripts under Action 5.
