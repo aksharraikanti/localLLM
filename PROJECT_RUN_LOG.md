@@ -41,3 +41,15 @@ This log provides a chronological record of completed tasks and plans. At the en
 - Add badges placeholders for CI and Python version.
 
 At end of tomorrow’s work, append “Action 2” summary here with outcomes and any blockers.
+
+## Action 2: Initial Setup
+
+- Created feature branch `feature/initial-setup`.
+- Added `.env.template` and documented placeholder variables.
+- Added `requirements.txt` with initial runtime dependencies.
+- Added `.pre-commit-config.yaml` with Black, isort, and Flake8 hooks.
+- Installed pre-commit hooks and verified setup on changed files.
+- Scaffolded CI workflow in `.github/workflows/ci.yml` for linting and testing.
+- Added placeholder test `tests/test_placeholder.py` to validate pytest.
+- Updated `README.md` with Getting Started instructions and CI/Python badges.
+- Ran pytest successfully and verified pre-commit hooks on modified files.
