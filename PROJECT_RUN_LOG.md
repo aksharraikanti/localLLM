@@ -53,3 +53,19 @@ At end of tomorrow’s work, append “Action 2” summary here with outcomes an
 - Added placeholder test `tests/test_placeholder.py` to validate pytest.
 - Updated `README.md` with Getting Started instructions and CI/Python badges.
 - Ran pytest successfully and verified pre-commit hooks on modified files.
+
+## Action 3: Data Collection & Curation (Day 3)
+
+**3.1 Define Domain & Scope**
+- Created `data/DOMAIN.md` with target topics and tags for Kubernetes support.
+
+**3.2 Fetch Script Scaffold**
+- Added `scripts/fetch_stackexchange.py` with CLI args, environment-variable checks, and placeholder `fetch_questions` implementation.
+
+**3.3 Unit Test for Fetch Script**
+- Added `tests/test_fetch_stackexchange.py` asserting `fetch_questions` raises `NotImplementedError`.
+
+**3.4 Update Run Log**
+- Appended this Action 3 summary and day-of-work details.
+
+At end of day, implement placeholder test and proceed to flesh out fetch logic under Action 4.

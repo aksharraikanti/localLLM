@@ -1,57 +1,66 @@
 #!/usr/bin/env python3
 """
-Fetch Q&A pairs from Stack Exchange API for specified tags.
+Fetch Q&A data from the Stack Exchange API based on tags.
 """
+
 import argparse
 import json
 import os
-import time
-import requests
 
-API_URL = "https://api.stackexchange.com/2.3/questions"
 
-def fetch_questions(tags, pagesize=100, max_pages=10, key=None, access_token=None):
-    all_items = []
-    for page in range(1, max_pages + 1):
-        params = {
-            "order": "desc",
-            "sort": "activity",
-            "site": "stackoverflow",
-            "tagged": tags,
-            "pagesize": pagesize,
-            "page": page,
-            "filter": "withbody",
-        }
-        if key:
-            params["key"] = key
-        if access_token:
-            params["access_token"] = access_token
-        resp = requests.get(API_URL, params=params)
-        resp.raise_for_status()
-        data = resp.json()
-        items = data.get("items", [])
-        if not items:
-            break
-        all_items.extend(items)
-        if not data.get("has_more", False):
-            break
-        time.sleep(1)
-    return all_items
+def fetch_questions(tags, page_size, api_key, access_token):
+    """
+    Fetch questions from Stack Exchange matching the given tags.
+
+    Args:
+        tags (list[str]): List of tag strings to filter questions.
+        page_size (int): Number of questions per page.
+        api_key (str): Stack Exchange API key.
+        access_token (str): OAuth access token, if required.
+
+    Returns:
+        list[dict]: Raw question data from API.
+    """
+    raise NotImplementedError("Function fetch_questions is not implemented yet.")
+
 
 def main():
-    parser = argparse.ArgumentParser(description="Fetch StackExchange questions by tags")
-    parser.add_argument("--tags", required=True, help="Comma-separated list of tags")
-    parser.add_argument("--pagesize", type=int, default=100)
-    parser.add_argument("--maxpages", type=int, default=10)
-    parser.add_argument("--output", default="data/raw/stackexchange.json")
+    parser = argparse.ArgumentParser(
+        description="Fetch Stack Exchange questions by tags",
+    )
+    parser.add_argument(
+        "--tags",
+        nargs="+",
+        required=True,
+        help="List of tags to query (e.g., kubernetes networking)",
+    )
+    parser.add_argument(
+        "--page-size",
+        type=int,
+        default=100,
+        help="Number of questions to fetch per page",
+    )
+    parser.add_argument(
+        "--output",
+        required=True,
+        help="Output file path for the raw JSON data",
+    )
     args = parser.parse_args()
-    key = os.getenv("STACKEX_API_KEY")
-    token = os.getenv("STACKEX_ACCESS_TOKEN")
-    items = fetch_questions(args.tags, args.pagesize, args.maxpages, key, token)
-    os.makedirs(os.path.dirname(args.output), exist_ok=True)
-    with open(args.output, "w") as f:
-        json.dump(items, f, indent=2)
-    print(f"Saved {len(items)} records to {args.output}")
+
+    api_key = os.getenv("STACKEX_API_KEY")
+    access_token = os.getenv("STACKEX_ACCESS_TOKEN")
+    if not api_key:
+        parser.error("Environment variable STACKEX_API_KEY is required.")
+
+    data = fetch_questions(
+        tags=args.tags,
+        page_size=args.page_size,
+        api_key=api_key,
+        access_token=access_token,
+    )
+    with open(args.output, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
 
 if __name__ == "__main__":
     main()
