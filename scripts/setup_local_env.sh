@@ -1,6 +1,19 @@
 #!/usr/bin/env bash
 set -e
 
+#!/usr/bin/env bash
+set -e
+
+# Support update flag for Miniforge installer
+UPDATE_MINIFORGE=0
+while getopts "u" opt; do
+  case $opt in
+    u) UPDATE_MINIFORGE=1 ;;
+    *) echo "Usage: $0 [-u]" >&2; exit 1 ;;
+  esac
+done
+shift $((OPTIND-1))
+
 echo "== Xcode command-line tools =="
 if ! xcode-select -p &> /dev/null; then
   echo "Installing Xcode command-line tools..."
@@ -10,17 +23,24 @@ else
 fi
 
 echo "\n== Miniforge / Conda =="
-if ! command -v conda &> /dev/null; then
-  echo "Conda not found. Installing Miniforge3 (arm64)..."
-  installer=Miniforge3-MacOSX-arm64.sh
-  url=https://github.com/conda-forge/miniforge/releases/latest/download/$installer
+installer=Miniforge3-MacOSX-arm64.sh
+url=https://github.com/conda-forge/miniforge/releases/latest/download/$installer
+if [ -d "$HOME/miniforge3" ]; then
+  if [ "$UPDATE_MINIFORGE" -eq 1 ]; then
+    echo "Updating Miniforge3 installation at $HOME/miniforge3..."
+    curl -LO "$url"
+    bash "$installer" -b -u -p "$HOME/miniforge3"
+    rm "$installer"
+  else
+    echo "Miniforge3 already installed at $HOME/miniforge3"
+  fi
+else
+  echo "Installing Miniforge3 (arm64) to $HOME/miniforge3..."
   curl -LO "$url"
   bash "$installer" -b -p "$HOME/miniforge3"
   rm "$installer"
-  export PATH="$HOME/miniforge3/bin:$PATH"
-else
-  echo "Conda found at $(which conda)."
 fi
+export PATH="$HOME/miniforge3/bin:$PATH"
 
 echo "\n== Create & Activate environment =="
 if conda env list | grep -q "local-llm"; then
@@ -39,9 +59,9 @@ pip install transformers bitsandbytes accelerate peft onnxruntime fastapi stream
 
 echo "\n== Docker Desktop (Apple Silicon) =="
 if ! command -v docker &> /dev/null; then
-  echo "Docker not found. Please install Docker Desktop for Mac (Apple Silicon)."
+  echo "Docker CLI not found. Ensure Docker Desktop for Mac (Apple Silicon) is installed and the 'docker' command is on your PATH."
 else
-  echo "Docker found at $(which docker)."
+  echo "Docker found: $(docker --version)"
 fi
 
 echo "\n== PyTorch MPS backend check =="
