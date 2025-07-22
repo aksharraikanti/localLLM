@@ -57,15 +57,20 @@ def main():
         description="Fetch Stack Exchange questions by tags",
     )
     parser.add_argument(
-        "--tags", nargs="+", required=True,
+        "--tags",
+        nargs="+",
+        required=True,
         help="Tags to filter (e.g., kubernetes networking)",
     )
     parser.add_argument(
-        "--page-size", type=int, default=100,
+        "--page-size",
+        type=int,
+        default=100,
         help="Number of questions to fetch per page (max 100)",
     )
     parser.add_argument(
-        "--output", required=True,
+        "--output",
+        required=True,
         help="Output JSON file path for raw question data",
     )
     args = parser.parse_args()
