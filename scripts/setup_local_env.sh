@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-#!/usr/bin/env bash
-set -e
-
 # Support update flag for Miniforge installer
 UPDATE_MINIFORGE=0
 while getopts "u" opt; do

@@ -7,3 +7,5 @@ __pycache__/
 *.pt
 *.onnx
 AGENTS.md
+# macOS artifacts
+.DS_Store
