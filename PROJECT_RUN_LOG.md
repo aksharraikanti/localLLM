@@ -79,3 +79,19 @@ At end of day, implement placeholder test and proceed to flesh out fetch logic u
 - Extended `tests/test_fetch_stackexchange.py` with `test_fetch_questions_pagination` mocking `requests.get` to verify loop logic.
 
 At end of day, run integration fetch on a small tag set and draft scraping scripts under Action 5.
+
+## Action 5: Initial Data Fetch & FAQ Scraper (Day 5)
+
+**5.1 Integration Fetch Smoke Test**
+- Execute `scripts/fetch_stackexchange.py` on a small tag set to verify API connectivity and write raw JSON under `data/raw/stackexchange.json`.
+
+**5.2 FAQ Scraper Tests & Script Validation**
+- Added `tests/test_scrape_faqs.py` to validate `scrape_faq_page` behavior with mocked HTML.
+
+**5.3 Integration Fetch Test**
+- Added `tests/test_integration_fetch.py` (skipped if no API key) to verify live API fetch.
+
+**5.4 Directory Setup**
+- Created `data/raw/.gitkeep` to track the raw data folder.
+
+At end of tomorrow’s work, review fetched data, run scrapers on sample FAQ URLs, and proceed to Action 6 (data cleaning).
