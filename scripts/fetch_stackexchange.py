@@ -86,9 +86,11 @@ def main():
         api_key=api_key,
         access_token=access_token,
     )
+    output_dir = os.path.dirname(args.output)
+    if output_dir:  # Ensure the directory part is not empty (e.g., for current directory files)
+        os.makedirs(output_dir, exist_ok=True)
     with open(args.output, "w", encoding="utf-8") as f:
         json.dump(questions, f, ensure_ascii=False, indent=2)
-
-
+    print(f"Successfully saved {len(questions)} questions to {args.output}.")
 if __name__ == "__main__":
     main()
