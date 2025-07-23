@@ -1,18 +1,22 @@
 # Domain Definition
 
-**Domain:** Technical Support for Kubernetes
+This project focuses on technical support for Kubernetes and related cloud-native topics.
 
-**Target Topics:**
-- Kubernetes core concepts (Pods, Services, Deployments)
-- Networking and ingress
-- Stateful workloads and storage
-- Configuration and secrets management
-- Monitoring and logging
-- Security and RBAC
-- Troubleshooting common errors
+## Target Topics
 
-**Question Types:**
-- Configuration how-tos
-- Debugging and troubleshooting workflows
-- Best practices and architectural guidance
-- Performance tuning and resource optimization
+- Kubernetes core components (API server, etcd, kubelet)
+- Application deployment and scaling
+- Networking (Services, Ingress, Network Policies)
+- Storage (Persistent Volumes, CSI drivers)
+- Security (RBAC, Pod Security Policies)
+- Observability and troubleshooting (logs, metrics)
+
+## Target Tags
+
+- kubernetes
+- kubeadm
+- helm
+- network-policy
+- statefulset
+- ingress
+- persistent-volume
