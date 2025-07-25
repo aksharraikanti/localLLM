@@ -33,3 +33,27 @@ Follow these steps to get the project running locally:
    ```bash
    pytest --maxfail=1 --disable-warnings -q
    ```
+
+## Model Fine-Tuning
+
+Once you have a processed dataset, you can fine-tune a pretrained model:
+
+```bash
+# Prepare the dataset (tokenized)
+python scripts/prepare_dataset.py \
+  --input data/clean/combined.jsonl \
+  --output-dir data/processed/dataset \
+  --model-name-or-path t5-small \
+  --max-length 512
+
+# Train the model
+python scripts/train_model.py \
+  --dataset-dir data/processed/dataset \
+  --model-name-or-path t5-small \
+  --output-dir models/t5-finetuned \
+  --batch-size 8 \
+  --epochs 3 \
+  --lr 5e-5
+```
+
+Fill in hyperparameters in `configs/train_config.yaml` as needed.

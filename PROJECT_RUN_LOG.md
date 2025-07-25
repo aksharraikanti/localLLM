@@ -121,3 +121,22 @@ At end of day, run cleaning on a sample raw dump and generate `data/clean/stacke
 - Added `scripts/stats.py` to compute average question/answer tokens and vocabulary size; outputs `data/processed/stats.md`.
 
 At end of tomorrow’s work, merge cleaned files, run stats, validate outputs, and proceed to Action 8 (model fine-tuning scaffolding).
+
+## Action 8: Model Fine-Tuning Scaffolding (Day 8)
+
+**8.1 Dataset Preparation Script**
+- Added `scripts/prepare_dataset.py` to load combined JSONL, convert to a Hugging Face dataset, and tokenize examples.
+
+**8.2 Training Script**
+- Added `scripts/train_model.py` with CLI entrypoint using `transformers.Trainer` and `TrainingArguments` to fine-tune on the tokenized dataset.
+
+**8.3 Configuration Template**
+- Added `configs/train_config.yaml` to provide a template for adjustable training parameters (batch size, epochs, learning rate, etc.).
+
+**8.4 Tests for Scaffolding**
+- Added `tests/test_prepare_dataset.py` and `tests/test_train_model.py` mocking HF components to validate dataset preparation and training logic.
+
+**8.5 Requirements Update**
+- Updated `requirements.txt` to include `torch`, `transformers`, `datasets`, `tokenizers`, `pyyaml`, and `tqdm` for model fine-tuning support.
+
+At end of day, validate dataset preparation on a small sample, dry-run the training script, and plan hyperparameter tuning under Action 9.
