@@ -79,3 +79,45 @@ At end of day, implement placeholder test and proceed to flesh out fetch logic u
 - Extended `tests/test_fetch_stackexchange.py` with `test_fetch_questions_pagination` mocking `requests.get` to verify loop logic.
 
 At end of day, run integration fetch on a small tag set and draft scraping scripts under Action 5.
+
+## Action 5: Initial Data Fetch & FAQ Scraper (Day 5)
+
+**5.1 Integration Fetch Smoke Test**
+- Execute `scripts/fetch_stackexchange.py` on a small tag set to verify API connectivity and write raw JSON under `data/raw/stackexchange.json`.
+
+**5.2 FAQ Scraper Tests & Script Validation**
+- Added `tests/test_scrape_faqs.py` to validate `scrape_faq_page` behavior with mocked HTML.
+
+**5.3 Integration Fetch Test**
+- Added `tests/test_integration_fetch.py` (skipped if no API key) to verify live API fetch.
+
+**5.4 Directory Setup**
+- Created `data/raw/.gitkeep` to track the raw data folder.
+
+At end of tomorrow’s work, review fetched data, run scrapers on sample FAQ URLs, and proceed to Action 6 (data cleaning).
+
+## Action 6: Data Cleaning Pipeline (Day 6)
+
+**6.1 clean_data Implementation**
+- Completed `scripts/clean_data.py` with Unicode normalization (NFKC), HTML stripping via Bleach, whitespace collapse, length filtering, and deduplication logic.
+
+**6.2 Unit Tests for Cleaning**
+- Added `tests/test_clean_data.py` covering `clean_text`, `extract_qa`, and `clean_dataset` end-to-end on sample data.
+
+**6.3 Dependency Update**
+- Added `bleach` to `requirements.txt` for HTML tag removal.
+
+At end of day, run cleaning on a sample raw dump and generate `data/clean/stackexchange_clean.jsonl`, then plan preprocessing merges under Action 7.
+
+## Action 7: Data Consolidation & Statistics (Day 7)
+
+**7.1 Directory Setup**
+- Added `.gitkeep` in `data/clean/` and `data/processed/` to track directories.
+
+**7.2 Merge Cleaned Data**
+- Created `scripts/merge_cleaned.py` to combine all `*.jsonl` under `data/clean/` into `data/clean/combined.jsonl`.
+
+**7.3 Compute Statistics**
+- Added `scripts/stats.py` to compute average question/answer tokens and vocabulary size; outputs `data/processed/stats.md`.
+
+At end of tomorrow’s work, merge cleaned files, run stats, validate outputs, and proceed to Action 8 (model fine-tuning scaffolding).

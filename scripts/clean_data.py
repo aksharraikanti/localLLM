@@ -33,18 +33,20 @@ def extract_qa(record: dict) -> Optional[Tuple[str, str]]:
     return None
 
 
-def clean_dataset(input_path: str, output_path: str,
-                  min_tokens: int, max_tokens: int) -> int:
+def clean_dataset(
+    input_path: str, output_path: str, min_tokens: int, max_tokens: int
+) -> int:
     # track seen answers to dedupe duplicates by answer content
     seen_answers = set()
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     count = 0
-    with open(input_path, "r", encoding="utf8") as src, \
-         open(output_path, "w", encoding="utf8") as dst:
+    with open(input_path, "r", encoding="utf8") as src, open(
+        output_path, "w", encoding="utf8"
+    ) as dst:
         # Load JSON or JSONL
         first = src.read(1)
         src.seek(0)
-        if first == '[':
+        if first == "[":
             data = json.load(src)
         else:
             data = [json.loads(line) for line in src if line.strip()]
@@ -78,13 +80,14 @@ def main():
     parser = argparse.ArgumentParser(description="Clean QA data and output JSONL.")
     parser.add_argument("--input", required=True, help="Input JSON or JSONL file path")
     parser.add_argument("--output", required=True, help="Output JSONL file path")
-    parser.add_argument("--min-tokens", type=int, default=10,
-                        help="Minimum token count per QA")
-    parser.add_argument("--max-tokens", type=int, default=512,
-                        help="Maximum token count per QA")
+    parser.add_argument(
+        "--min-tokens", type=int, default=10, help="Minimum token count per QA"
+    )
+    parser.add_argument(
+        "--max-tokens", type=int, default=512, help="Maximum token count per QA"
+    )
     args = parser.parse_args()
-    total = clean_dataset(args.input, args.output,
-                          args.min_tokens, args.max_tokens)
+    total = clean_dataset(args.input, args.output, args.min_tokens, args.max_tokens)
     print(f"Saved {total} cleaned records to {args.output}")
 
 
