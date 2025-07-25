@@ -16,4 +16,4 @@ def test_integration_fetch_questions():
     )
     assert isinstance(data, list)
     assert len(data) == 1
-    assert "question_id" in data[0] or "question_id" in data[0]
+    assert "question_id" in data[0]
