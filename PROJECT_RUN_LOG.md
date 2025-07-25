@@ -95,3 +95,16 @@ At end of day, run integration fetch on a small tag set and draft scraping scrip
 - Created `data/raw/.gitkeep` to track the raw data folder.
 
 At end of tomorrow’s work, review fetched data, run scrapers on sample FAQ URLs, and proceed to Action 6 (data cleaning).
+
+## Action 6: Data Cleaning Pipeline (Day 6)
+
+**6.1 clean_data Implementation**
+- Completed `scripts/clean_data.py` with Unicode normalization (NFKC), HTML stripping via Bleach, whitespace collapse, length filtering, and deduplication logic.
+
+**6.2 Unit Tests for Cleaning**
+- Added `tests/test_clean_data.py` covering `clean_text`, `extract_qa`, and `clean_dataset` end-to-end on sample data.
+
+**6.3 Dependency Update**
+- Added `bleach` to `requirements.txt` for HTML tag removal.
+
+At end of day, run cleaning on a sample raw dump and generate `data/clean/stackexchange_clean.jsonl`, then plan preprocessing merges under Action 7.
