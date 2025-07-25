@@ -2,7 +2,7 @@ import json
 
 import pytest
 
-from scripts.clean_data import clean_text, extract_qa, clean_dataset
+from scripts.clean_data import clean_dataset, clean_text, extract_qa
 
 
 @pytest.mark.parametrize(
@@ -20,9 +20,9 @@ def test_clean_text(raw, expected):
 @pytest.mark.parametrize(
     "record,expected",
     [
-        ( {"question": "Q?", "answer": "A."}, ("Q?", "A.") ),
-        ( {"title": "Q?", "body": "A."}, ("Q?", "A.") ),
-        ( {"foo": 1}, None ),
+        ({"question": "Q?", "answer": "A."}, ("Q?", "A.")),
+        ({"title": "Q?", "body": "A."}, ("Q?", "A.")),
+        ({"foo": 1}, None),
     ],
 )
 def test_extract_qa(record, expected):
@@ -41,9 +41,7 @@ def test_clean_dataset(tmp_path):
     outfile = tmp_path / "out.jsonl"
     infile.write_text(json.dumps(data), encoding="utf8")
 
-    count = clean_dataset(
-        str(infile), str(outfile), min_tokens=10, max_tokens=100
-    )
+    count = clean_dataset(str(infile), str(outfile), min_tokens=10, max_tokens=100)
     lines = outfile.read_text(encoding="utf8").splitlines()
     assert count == 2
     results = [json.loads(l) for l in lines]

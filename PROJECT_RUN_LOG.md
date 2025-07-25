@@ -108,3 +108,16 @@ At end of tomorrow’s work, review fetched data, run scrapers on sample FAQ URL
 - Added `bleach` to `requirements.txt` for HTML tag removal.
 
 At end of day, run cleaning on a sample raw dump and generate `data/clean/stackexchange_clean.jsonl`, then plan preprocessing merges under Action 7.
+
+## Action 7: Data Consolidation & Statistics (Day 7)
+
+**7.1 Directory Setup**
+- Added `.gitkeep` in `data/clean/` and `data/processed/` to track directories.
+
+**7.2 Merge Cleaned Data**
+- Created `scripts/merge_cleaned.py` to combine all `*.jsonl` under `data/clean/` into `data/clean/combined.jsonl`.
+
+**7.3 Compute Statistics**
+- Added `scripts/stats.py` to compute average question/answer tokens and vocabulary size; outputs `data/processed/stats.md`.
+
+At end of tomorrow’s work, merge cleaned files, run stats, validate outputs, and proceed to Action 8 (model fine-tuning scaffolding).
