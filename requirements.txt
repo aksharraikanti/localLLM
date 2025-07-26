@@ -3,3 +3,10 @@ pytest
 requests
 beautifulsoup4
 bleach
+# Model fine-tuning dependencies
+torch
+transformers
+datasets
+tokenizers
+pyyaml
+tqdm
