@@ -81,7 +81,7 @@ def main():
         num_train_epochs=hp_config.get("epochs", {}).get("default", 3),
         learning_rate=hp_config.get("learning_rate", {}).get("default", 5e-5),
         logging_dir=f"{args.output_dir}/logs",
-        logging_steps=hp_config.get("logging_steps", {}).get("default", 10),
+        logging_steps=hp_config.get("logging_steps", 10),
     )
 
     trainer = Trainer(
