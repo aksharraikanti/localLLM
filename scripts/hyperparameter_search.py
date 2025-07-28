@@ -57,7 +57,8 @@ def main():
     )
     args = parser.parse_args()
 
-    hp_config = yaml.safe_load(open(args.hp_config, encoding="utf8"))
+    with open(args.hp_config, encoding="utf8") as f:
+        hp_config = yaml.safe_load(f)
     metric = hp_config.get("metric", "eval_loss")
     direction = hp_config.get("direction", "minimize")
     # Remove non-search keys
