@@ -140,3 +140,27 @@ At end of tomorrow’s work, merge cleaned files, run stats, validate outputs, a
 - Updated `requirements.txt` to include `torch`, `transformers`, `datasets`, `tokenizers`, `pyyaml`, and `tqdm` for model fine-tuning support.
 
 At end of day, validate dataset preparation on a small sample, dry-run the training script, and plan hyperparameter tuning under Action 9.
+
+## Action 9: Hyperparameter Tuning Pipeline (Day 9)
+
+**9.1 Search Script**
+- Added `scripts/hyperparameter_search.py` to run Optuna-based HPO using `Trainer.hyperparameter_search`.
+
+**9.2 Search Space Config**
+- Added `configs/hyperparams.yaml` defining ranges and choices for learning rate, batch size, and epochs.
+
+**9.3 Requirements Update**
+- Added `optuna` to `requirements.txt` for optimization backend.
+
+**9.4 README & Documentation**
+- Updated `README.md` with instructions for running HPO and pointers to search-space config.
+
+At end of tomorrow’s work, execute a multi-trial search, evaluate best run on validation set, and prepare evaluation metrics report under Action 10.
+
+## Action 9: Hyperparameter Tuning Pipeline (Day 9)
+
+- Added `scripts/hyperparameter_search.py` to run Optuna-based HPO using Trainer.hyperparameter_search.
+- Added `configs/hyperparams.yaml` defining ranges, choices, and defaults for learning rate, batch size, and epochs.
+- Added `optuna` to `requirements.txt` for the optimization backend.
+- Updated `README.md` with instructions for running HPO and pointers to the search-space config.
+- Verified that `hyperparameter_search.py` runs a minimal trial without errors.

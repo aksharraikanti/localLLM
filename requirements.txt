@@ -10,3 +10,5 @@ datasets
 tokenizers
 pyyaml
 tqdm
+# Hyperparameter tuning dependency
+optuna

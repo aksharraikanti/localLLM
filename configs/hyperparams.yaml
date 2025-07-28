@@ -1,0 +1,21 @@
+# Hyperparameter search space for Optuna HPO
+metric: eval_loss
+direction: minimize
+
+learning_rate:
+  default: 5e-5
+  min: 1e-6
+  max: 5e-4
+  log: true
+
+batch_size:
+  default: 8
+  choices: [4, 8, 16]
+
+epochs:
+  default: 3
+  min: 1
+  max: 5
+
+logging_steps:
+  default: 10
