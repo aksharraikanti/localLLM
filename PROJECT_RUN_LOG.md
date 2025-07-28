@@ -157,6 +157,22 @@ At end of day, validate dataset preparation on a small sample, dry-run the train
 
 At end of tomorrow’s work, execute a multi-trial search, evaluate best run on validation set, and prepare evaluation metrics report under Action 10.
 
+## Action 10: Evaluation Metrics & Reporting (Day 10)
+
+**10.1 Evaluation Script**
+- Add `scripts/evaluate_model.py` to generate predictions on cleaned data and compute ROUGE metrics.
+
+**10.2 Dependency Update**
+- Add `evaluate` and `rouge-score` to `requirements.txt` for evaluation backend.
+
+**10.3 README Update**
+- Update `README.md` to include instructions for running the evaluation script.
+
+**10.4 Report Generation**
+- Evaluation script writes a markdown report `data/processed/eval_report.md` with computed metrics.
+
+At end of day, review evaluation metrics, compare models, and proceed to Action 11 (inference API scaffolding).
+
 ## Action 9: Hyperparameter Tuning Pipeline (Day 9)
 
 - Added `scripts/hyperparameter_search.py` to run Optuna-based HPO using Trainer.hyperparameter_search.

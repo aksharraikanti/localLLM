@@ -12,3 +12,7 @@ pyyaml
 tqdm
 # Hyperparameter tuning dependency
 optuna
+
+# Evaluation metrics dependencies
+evaluate
+rouge-score

@@ -72,3 +72,18 @@ python scripts/hyperparameter_search.py \
 ```
 
 Defaults for search space, metric, and optimization direction are defined in `configs/hyperparams.yaml`. Tweak that file to adjust ranges, choices, or objective settings.
+
+## Model Evaluation
+
+After fine-tuning, evaluate your model on the cleaned QA dataset to compute ROUGE scores:
+
+```bash
+python scripts/evaluate_model.py \
+  --input data/clean/combined.jsonl \
+  --model-dir models/t5-finetuned \
+  --output data/processed/eval_report.md \
+  --batch-size 8 \
+  --max-length 512
+```
+
+This will generate a markdown report with ROUGE metrics. Adjust batch size or `--max-length` as needed.
