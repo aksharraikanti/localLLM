@@ -57,3 +57,18 @@ python scripts/train_model.py \
 ```
 
 Fill in hyperparameters in `configs/train_config.yaml` as needed.
+
+## Hyperparameter Search
+
+After a baseline fine-tuning run, you can run hyperparameter optimization:
+
+```bash
+python scripts/hyperparameter_search.py \
+  --dataset-dir data/processed/dataset \
+  --model-name-or-path t5-small \
+  --output-dir models/t5-hpo \
+  --hp-config configs/hyperparams.yaml \
+  --trials 20
+```
+
+Defaults for search space, metric, and optimization direction are defined in `configs/hyperparams.yaml`. Tweak that file to adjust ranges, choices, or objective settings.
