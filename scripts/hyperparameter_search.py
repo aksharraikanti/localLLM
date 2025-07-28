@@ -87,7 +87,8 @@ def main():
     trainer = Trainer(
         model_init=model_init,
         args=training_args,
-        train_dataset=ds,
+        train_dataset=train_ds,
+        eval_dataset=eval_ds,
         data_collator=data_collator,
         tokenizer=tokenizer,
     )
