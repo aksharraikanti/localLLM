@@ -3,6 +3,12 @@
 [![CI](https://github.com/your-org/localLLM/actions/workflows/ci.yml/badge.svg)]()
 [![Python](https://img.shields.io/badge/python-3.10-blue.svg)]()
 
+Install the SDK for inference client:
+```bash
+pip install .
+# or once published: pip install localLLM-client
+```
+
 ## Local Environment Setup
 
 To simplify local setup on macOS (Apple Silicon), run the provided script:
@@ -111,3 +117,9 @@ and returns:
 ```json
 { "answer": "Kubernetes is an open-source container orchestration system..." }
 ```
+
+Optional features:
+- **API Key**: set `API_KEY` environment variable and include header `X-API-Key` to secure endpoints.
+- **Batch inference**: use `/predict_batch` with `{"questions": [...], "max_length": ...}` to get multiple answers.
+- **Health check**: GET `/health` returns `{ "status": "ok" }`.
+- After installation, use the `localllm-client` CLI (or import `localllm_client.client`) to run inference calls.

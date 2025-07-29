@@ -23,12 +23,16 @@ def test_train_model_flow(monkeypatch, tmp_path):
     # Mock load_from_disk
     monkeypatch.setattr("scripts.train_model.load_from_disk", lambda path: "dummy-ds")
     # Mock tokenizer and model
+    # Stub tokenizer.from_pretrained for tests
     monkeypatch.setattr(
-        "scripts.train_model.AutoTokenizer", lambda *args, **kwargs: DummyTokenizer()
+        "scripts.train_model.AutoTokenizer.from_pretrained",
+        lambda *args, **kwargs: DummyTokenizer(),
     )
     dummy_model = DummyModel()
+    # Stub model.from_pretrained for tests
     monkeypatch.setattr(
-        "scripts.train_model.AutoModelForSeq2SeqLM", lambda *args, **kwargs: dummy_model
+        "scripts.train_model.AutoModelForSeq2SeqLM.from_pretrained",
+        lambda *args, **kwargs: dummy_model,
     )
     # Mock data collator
     monkeypatch.setattr(
