@@ -189,6 +189,25 @@ At end of day, review evaluation metrics, compare models, and proceed to Action 
 
 At end of day, test the inference server locally and proceed to Action 12 (client integration / SDK).
 
+## Action 12: Client Integration & Extras (Day 12)
+
+**12.1 Python Client CLI**
+- Added `scripts/client.py` for single or batch requests with API-key support.
+
+**12.2 API Enhancements**
+- `/health` endpoint for service status.
+- API key enforcement via `X-API-Key` header (env `API_KEY`).
+- Batch inference endpoint `/predict_batch` for multiple questions.
+
+**12.3 Tests for Client & API**
+- Added `tests/test_client.py` for CLI client functionality.
+- Extended `tests/test_inference_api.py` covers API-key auth, health, and batch endpoints.
+
+**12.4 Documentation Updates**
+- Updated `README.md` with client usage, security notes, and new endpoints.
+
+At end of day, validate client-server integration end-to-end and plan SDK packaging under Action 13.
+
 ## Action 9: Hyperparameter Tuning Pipeline (Day 9)
 
 - Added `scripts/hyperparameter_search.py` to run Optuna-based HPO using Trainer.hyperparameter_search.

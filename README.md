@@ -111,3 +111,8 @@ and returns:
 ```json
 { "answer": "Kubernetes is an open-source container orchestration system..." }
 ```
+
+Optional features:
+- **API Key**: set `API_KEY` environment variable and include header `X-API-Key` to secure endpoints.
+- **Batch inference**: use `/predict_batch` with `{"questions": [...], "max_length": ...}` to get multiple answers.
+- **Health check**: GET `/health` returns `{ "status": "ok" }`.

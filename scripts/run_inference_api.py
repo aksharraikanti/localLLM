@@ -3,8 +3,9 @@
 Run a FastAPI server for inference using a fine-tuned Seq2Seq model.
 """
 import argparse
+import os
 
-from fastapi import FastAPI, HTTPException
+from fastapi import Depends, FastAPI, Header, HTTPException
 from pydantic import BaseModel
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 
@@ -23,6 +24,14 @@ class InferenceResponse(BaseModel):
 tokenizer = None
 model = None
 
+# optional API key enforcement (set via environment variable)
+API_KEY = os.environ.get("API_KEY")
+
+
+def verify_api_key(x_api_key: str = Header(None)):
+    if API_KEY and x_api_key != API_KEY:
+        raise HTTPException(status_code=401, detail="Invalid API key")
+
 
 def init_model(model_dir: str):
     """Load tokenizer and model from the specified directory."""
@@ -31,7 +40,11 @@ def init_model(model_dir: str):
     model = AutoModelForSeq2SeqLM.from_pretrained(model_dir)
 
 
-@app.post("/predict", response_model=InferenceResponse)
+@app.post(
+    "/predict",
+    response_model=InferenceResponse,
+    dependencies=[Depends(verify_api_key)],
+)
 def predict(req: InferenceRequest):
     if model is None or tokenizer is None:
         raise HTTPException(
@@ -48,6 +61,47 @@ def predict(req: InferenceRequest):
     )
     answer = tokenizer.decode(outputs[0], skip_special_tokens=True)
     return InferenceResponse(answer=answer)
+
+
+@app.get("/health", dependencies=[Depends(verify_api_key)])
+def health():
+    """Health check endpoint returning service status."""
+    return {"status": "ok"}
+
+
+from typing import List
+
+
+class BatchRequest(BaseModel):
+    questions: List[str]
+    max_length: int = 512
+
+
+class BatchResponse(BaseModel):
+    answers: List[str]
+
+
+@app.post(
+    "/predict_batch",
+    response_model=BatchResponse,
+    dependencies=[Depends(verify_api_key)],
+)
+def predict_batch(req: BatchRequest):
+    """Handle batch inference for a list of questions."""
+    if model is None or tokenizer is None:
+        raise HTTPException(status_code=503, detail="Model not initialized.")
+    answers: List[str] = []
+    for question in req.questions:
+        inputs = tokenizer(
+            question, return_tensors="pt", truncation=True, max_length=req.max_length
+        )
+        outputs = model.generate(
+            input_ids=inputs.input_ids,
+            attention_mask=inputs.attention_mask,
+            max_length=req.max_length,
+        )
+        answers.append(tokenizer.decode(outputs[0], skip_special_tokens=True))
+    return BatchResponse(answers=answers)
 
 
 def main():
