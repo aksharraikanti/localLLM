@@ -5,8 +5,7 @@ setup(
     name="localLLM-client",
     version="0.1.0",
     description="Python SDK for localLLM QA Inference API",
-    packages=find_packages(where="sdk"),
-    package_dir={"": "sdk"},
+    packages=find_packages(),
     install_requires=[
         "requests",
         "pydantic",
