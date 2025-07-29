@@ -11,7 +11,7 @@ This log provides a chronological record of completed tasks and plans. At the en
 - Created PROJECT_RUN_LOG.md to track progress.
 - Confirmed .gitignore ignores AGENTS.md.
 
-## Detailed Plan for Action 2 (Next Steps – Tomorrow)
+## Detailed Plan for Action 2
 
 **2.1 Branching & Environment Setup**
 - Create a new feature branch `feature/initial-setup`.
