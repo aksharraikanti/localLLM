@@ -9,6 +9,8 @@ def clear_model(monkeypatch):
     # Ensure model/tokenizer are unset for tests
     monkeypatch.setattr(api, "tokenizer", None)
     monkeypatch.setattr(api, "model", None)
+    # disable API key enforcement for tests
+    monkeypatch.delenv("API_KEY", raising=False)
     return api
 
 
@@ -28,7 +30,11 @@ def test_predict_smoke(monkeypatch):
     # stub tokenizer and model for smoke test
     class DummyTok:
         def __call__(self, text, **kwargs):
-            return {"input_ids": [0], "attention_mask": [0]}
+            class Enc:
+                input_ids = [0]
+                attention_mask = [0]
+
+            return Enc()
 
         def decode(self, ids, skip_special_tokens=True):
             return "dummy"

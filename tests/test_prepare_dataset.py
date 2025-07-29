@@ -31,11 +31,18 @@ def patch_hf(monkeypatch, tmp_path):
     monkeypatch.setattr(
         "scripts.prepare_dataset.load_dataset", lambda *args, **kwargs: DummyDataset()
     )
+
+    # Stub tokenizer.from_pretrained to avoid external dependencies
+    class DummyTok:
+        def as_target_tokenizer(self):
+            return self
+
+        def __call__(self, *args, **kwargs):
+            return {}
+
     monkeypatch.setattr(
-        "scripts.prepare_dataset.AutoTokenizer",
-        lambda model_name, use_fast: type(
-            "T", (), {"as_target_tokenizer": lambda self: self}
-        )(),
+        "scripts.prepare_dataset.AutoTokenizer.from_pretrained",
+        lambda model_name, use_fast=True: DummyTok(),
     )
     return input_file
 

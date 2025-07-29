@@ -15,11 +15,10 @@ optuna
 
 # Evaluation metrics dependencies
 evaluate
-# Evaluation metrics dependencies
-evaluate
 rouge-score
 
 # Inference API dependencies
 fastapi
 uvicorn
 pydantic
+httpx
