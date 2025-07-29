@@ -9,7 +9,6 @@ This log provides a chronological record of completed tasks and plans. At the en
 ## Action 1: Project Log Initialization
 
 - Created PROJECT_RUN_LOG.md to track progress.
-- Removed AGENTS.md and all agent-specific instructions.
 - Confirmed .gitignore ignores AGENTS.md.
 
 ## Detailed Plan for Action 2 (Next Steps – Tomorrow)
