@@ -222,7 +222,20 @@ At end of day, validate client-server integration end-to-end and plan SDK packag
 **13.4 Tests Update**
 - Adjusted `tests/test_client.py` imports to verify packaged client module.
 
-At end of day, run `pip install .`, execute `localllm-client --help`, and proceed to Action 14 (sdk on PyPI / CI publishing).
+At end of day, run `pip install .`, execute `localllm-client --help`, and proceed to Action 14 (SDK on PyPI / CI publishing).
+
+## Action 14: CI/CD & PyPI Publishing (Day 14)
+
+**14.1 GitHub Action for PyPI**
+- Added `.github/workflows/publish_sdk.yml` to build and publish on tag `v*.*.*` using `pypa/gh-action-pypi-publish`.
+
+**14.2 README Badges & Instructions**
+- (Optional) Add PyPI badge and update README to reference release tags.
+
+**14.3 CI Integration**
+- Ensure publish workflow only triggers on version tags; regular CI unaffected.
+
+At end of day, tag a new release (e.g., `v0.1.0`) and verify publishing to TestPyPI/PyPI.
 
 ## Action 9: Hyperparameter Tuning Pipeline (Day 9)
 
