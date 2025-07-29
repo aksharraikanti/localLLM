@@ -23,4 +23,3 @@ rouge-score
 fastapi
 uvicorn
 pydantic
-httpx

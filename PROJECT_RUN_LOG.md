@@ -208,6 +208,22 @@ At end of day, test the inference server locally and proceed to Action 12 (clien
 
 At end of day, validate client-server integration end-to-end and plan SDK packaging under Action 13.
 
+## Action 13: SDK Packaging & Distribution (Day 13)
+
+**13.1 Python SDK Packaging**
+- Moved client CLI into `sdk/localllm_client` package and added `setup.py` for pip installation.
+
+**13.2 Namespace & Versioning**
+- Initialized `localllm_client` package with version `0.1.0` in `__init__.py`.
+
+**13.3 Documentation**
+- Updated README to include SDK installation and usage in CLI and import scenarios.
+
+**13.4 Tests Update**
+- Adjusted `tests/test_client.py` imports to verify packaged client module.
+
+At end of day, run `pip install .`, execute `localllm-client --help`, and proceed to Action 14 (sdk on PyPI / CI publishing).
+
 ## Action 9: Hyperparameter Tuning Pipeline (Day 9)
 
 - Added `scripts/hyperparameter_search.py` to run Optuna-based HPO using Trainer.hyperparameter_search.

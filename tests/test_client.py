@@ -12,7 +12,7 @@ def set_api_key(monkeypatch):
 
 def test_client_single_request(monkeypatch, tmp_path, capsys):
     # stub requests.post
-    import scripts.client as client_mod
+    import localllm_client.client as client_mod
 
     class DummyResponse:
         def __init__(self):
@@ -46,7 +46,7 @@ def test_client_single_request(monkeypatch, tmp_path, capsys):
         "--max-length",
         "128",
     ]
-    import scripts.client as client
+    import localllm_client.client as client
 
     client.main()
     captured = capsys.readouterr()
@@ -54,7 +54,7 @@ def test_client_single_request(monkeypatch, tmp_path, capsys):
 
 
 def test_client_batch_request(monkeypatch, tmp_path, capsys):
-    import scripts.client as client_mod
+    import localllm_client.client as client_mod
 
     batch_file = tmp_path / "batch.json"
     batch_file.write_text(json.dumps({"questions": ["Q1", "Q2"]}), encoding="utf8")
@@ -85,7 +85,7 @@ def test_client_batch_request(monkeypatch, tmp_path, capsys):
         "--batch-file",
         str(batch_file),
     ]
-    import scripts.client as client
+    import localllm_client.client as client
 
     client.main()
     captured = capsys.readouterr()
