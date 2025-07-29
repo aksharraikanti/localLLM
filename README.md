@@ -6,7 +6,7 @@
 Install the SDK for inference client:
 ```bash
 pip install .
-# or once published: pip install localLLM-client
+# or once published: pip install localllm-client
 ```
 
 ## Local Environment Setup

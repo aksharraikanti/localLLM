@@ -211,7 +211,7 @@ At end of day, validate client-server integration end-to-end and plan SDK packag
 ## Action 13: SDK Packaging & Distribution (Day 13)
 
 **13.1 Python SDK Packaging**
-- Moved client CLI into `sdk/localllm_client` package and added `setup.py` for pip installation.
+- Moved client CLI into `localllm_client` package and added `setup.py` for pip installation.
 
 **13.2 Namespace & Versioning**
 - Initialized `localllm_client` package with version `0.1.0` in `__init__.py`.

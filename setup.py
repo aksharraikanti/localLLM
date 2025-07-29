@@ -2,7 +2,7 @@
 from setuptools import find_packages, setup
 
 setup(
-    name="localLLM-client",
+    name="localllm-client",
     version="0.1.0",
     description="Python SDK for localLLM QA Inference API",
     packages=find_packages(),
