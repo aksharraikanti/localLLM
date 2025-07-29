@@ -173,6 +173,22 @@ At end of tomorrow’s work, execute a multi-trial search, evaluate best run on 
 
 At end of day, review evaluation metrics, compare models, and proceed to Action 11 (inference API scaffolding).
 
+## Action 11: Inference API Scaffolding (Day 11)
+
+**11.1 API Server Template**
+- Added `scripts/run_inference_api.py` with FastAPI endpoint `/predict` and CLI entrypoint for serving the fine-tuned model.
+
+**11.2 Dependency Update**
+- Added `fastapi`, `uvicorn`, and `pydantic` to `requirements.txt` for the API stack.
+
+**11.3 README Update**
+- Added `Inference API` section in `README.md` with instructions to launch the server and sample request/response.
+
+**11.4 API Tests**
+- Added `tests/test_inference_api.py` to verify the app instance, error on uninitialized model, and a smoke test for prediction.
+
+At end of day, test the inference server locally and proceed to Action 12 (client integration / SDK).
+
 ## Action 9: Hyperparameter Tuning Pipeline (Day 9)
 
 - Added `scripts/hyperparameter_search.py` to run Optuna-based HPO using Trainer.hyperparameter_search.

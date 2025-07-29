@@ -87,3 +87,27 @@ python scripts/evaluate_model.py \
 ```
 
 This will generate a markdown report with ROUGE metrics. Adjust batch size or `--max-length` as needed.
+
+## Inference API
+
+After fine-tuning, serve your model via a FastAPI inference endpoint:
+
+```bash
+# Start the API server (requires a fine-tuned model dir)
+python scripts/run_inference_api.py \
+  --model-dir models/t5-finetuned \
+  --host 0.0.0.0 \
+  --port 8000
+```
+
+The `/predict` endpoint accepts a JSON body:
+
+```json
+{ "question": "What is Kubernetes?", "max_length": 256 }
+```
+
+and returns:
+
+```json
+{ "answer": "Kubernetes is an open-source container orchestration system..." }
+```
