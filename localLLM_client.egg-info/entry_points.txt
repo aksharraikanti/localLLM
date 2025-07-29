@@ -1,2 +1,0 @@
-[console_scripts]
-localllm-client = localllm_client.client:main
