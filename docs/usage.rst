@@ -1,0 +1,16 @@
+Usage Guide
+===========
+
+This section documents the core scripts for dataset preparation and model fine-tuning.
+
+Prepare Dataset
+---------------
+
+.. automodule:: scripts.prepare_dataset
+   :members:
+
+Train Model
+-----------
+
+.. automodule:: scripts.train_model
+   :members:

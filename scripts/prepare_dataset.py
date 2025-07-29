@@ -5,6 +5,7 @@ Prepare a Hugging Face dataset from cleaned JSONL for model fine-tuning.
 import argparse
 import os
 
+import yaml
 from datasets import load_dataset
 from transformers import AutoTokenizer
 
@@ -41,6 +42,7 @@ def main():
     parser = argparse.ArgumentParser(
         description="Prepare dataset for model fine-tuning"
     )
+    parser.add_argument("--config", help="YAML config file for dataset preparation")
     parser.add_argument(
         "--input",
         default="data/clean/combined.jsonl",
@@ -63,6 +65,21 @@ def main():
         help="Max sequence length after tokenization",
     )
     args = parser.parse_args()
+    # load config overrides
+    cfg = {}
+    if args.config:
+        with open(args.config, "r") as f:
+            cfg = yaml.safe_load(f) or {}
+    # override CLI args from config
+    mapping = {
+        "input": "input",
+        "output_dir": "output_dir",
+        "model_name_or_path": "model_name_or_path",
+        "max_length": "max_length",
+    }
+    for key, attr in mapping.items():
+        if key in cfg:
+            setattr(args, attr, cfg[key])
     prepare_dataset(
         args.input, args.output_dir, args.model_name_or_path, args.max_length
     )
