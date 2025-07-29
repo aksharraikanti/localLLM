@@ -237,10 +237,20 @@ At end of day, run `pip install .`, execute `localllm-client --help`, and procee
 
 At end of day, tag a new release (e.g., `v0.1.0`) and verify publishing to TestPyPI/PyPI.
 
-## Action 9: Hyperparameter Tuning Pipeline (Day 9)
+## Action 14: Summary
 
-- Added `scripts/hyperparameter_search.py` to run Optuna-based HPO using Trainer.hyperparameter_search.
-- Added `configs/hyperparams.yaml` defining ranges, choices, and defaults for learning rate, batch size, and epochs.
-- Added `optuna` to `requirements.txt` for the optimization backend.
-- Updated `README.md` with instructions for running HPO and pointers to the search-space config.
-- Verified that `hyperparameter_search.py` runs a minimal trial without errors.
+- Completed CI/CD publish workflow (`.github/workflows/publish_sdk.yml`) for PyPI releases.
+- Updated README with PyPI release badge and instructions.
+
+## Action 15: Documentation & Containerization (Next Steps)
+
+**15.1 Docker & Docker Compose**  
+- Add `Dockerfile`, `.dockerignore`, and `docker-compose.yml` for containerized deployment of the inference API.
+
+**15.2 Documentation Generation**  
+- Scaffold Sphinx documentation under `docs/` with basic project overview and API reference.
+
+**15.3 Observability & Logging**  
+- Integrate standardized logging configuration for scripts and API server.
+
+At end of day, verify Docker deployment workflow, generate HTML docs via Sphinx, and plan monitoring integration under Action 16.

@@ -123,3 +123,19 @@ Optional features:
 - **Batch inference**: use `/predict_batch` with `{"questions": [...], "max_length": ...}` to get multiple answers.
 - **Health check**: GET `/health` returns `{ "status": "ok" }`.
 - After installation, use the `localllm-client` CLI (or import `localllm_client.client`) to run inference calls.
+
+### Docker Deployment
+
+Build and run the inference API in a Docker container:
+
+```bash
+docker build -t localllm-api .
+docker run -e API_KEY=<your_key> -e MODEL_DIR=models/t5-finetuned \
+  -p 8000:8000 localllm-api
+```
+
+Or using Docker Compose (set `API_KEY` and `MODEL_DIR` in `.env`):
+
+```bash
+docker-compose up --build
+```

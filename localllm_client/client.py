@@ -8,9 +8,17 @@ import os
 
 import requests
 
+from localllm_client import __version__
+
 
 def main():
     parser = argparse.ArgumentParser(description="Client for QA Inference API")
+    parser.add_argument(
+        "--version",
+        action="version",
+        version=__version__,
+        help="Show client version and exit",
+    )
     parser.add_argument(
         "--url", default="http://localhost:8000", help="Base URL of the inference API"
     )

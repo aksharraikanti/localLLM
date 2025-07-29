@@ -1,10 +1,26 @@
 # Training configuration template for model fine-tuning
-model_name_or_path: t5-small
-dataset_dir: data/processed/dataset
-output_dir: models/t5-finetuned
+model_name_or_path: t5 - small
+dataset_dir: data / processed / dataset
+output_dir: models / t5 - finetuned
 batch_size: 8
 epochs: 3
 learning_rate: 5e-5
 max_length: 512
 logging_steps: 10
 logging_dir: logs
+
+# Evaluation and checkpointing
+evaluation_strategy: steps
+eval_steps: 100
+save_strategy: epoch
+save_total_limit: 3
+load_best_model_at_end: true
+metric_for_best_model: eval_loss
+greater_is_better: false
+
+# Training enhancements
+gradient_accumulation_steps: 1
+fp16: false
+report_to: tensorboard
+wandb_project: null
+early_stopping_patience: 3
