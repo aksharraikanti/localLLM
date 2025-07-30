@@ -13,6 +13,11 @@ tqdm
 # Hyperparameter tuning dependency
 optuna
 
+# Quantization & ONNX dependencies
+bitsandbytes
+onnxruntime
+optimum
+
 # Evaluation metrics dependencies
 evaluate
 # Evaluation metrics dependencies

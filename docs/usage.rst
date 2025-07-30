@@ -14,3 +14,15 @@ Train Model
 
 .. automodule:: scripts.train_model
    :members:
+
+LoRA Fine-Tuning
+---------------
+
+.. automodule:: src.train_lora
+   :members:
+
+Quantization & Evaluation
+-------------------------
+
+.. automodule:: src.quantize
+   :members:

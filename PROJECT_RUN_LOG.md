@@ -285,3 +285,16 @@ At end of day, run a small prototype on 500 samples to validate the LoRA pipelin
 - Record prototype results and challenges in `models/model_card.md`.
 
 At conclusion, integrate full dataset training under Action 19.
+
+## Action 20: Quantization & Baseline Evaluation
+
+**20.1 Baseline Perplexity**
+- Added `src/quantize.py` to load the LoRA adapter in 8-bit and compute prompt perplexities & responses.
+
+**20.2 Quantized Model Export**
+- Save 8-bit model under `models/quantized/8bit_model` via bitsandbytes backend.
+
+**20.3 Documentation & Benchmarks**
+- Created `docs/benchmarks.md` and `eval/quant_stats.md` to record size and latency stats.
+
+At end of day, run `src/quantize.py` on sample prompts and update quant_stats and benchmarks accordingly.
