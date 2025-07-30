@@ -253,3 +253,35 @@ At end of day, tag a new release (e.g., `v0.1.0`) and verify publishing to TestP
 - Integrate standardized logging configuration for scripts and API server.
 
 At end of day, verify Docker deployment workflow, generate HTML docs via Sphinx, and plan monitoring integration under Action 16.
+
+## Action 17: LoRA Fine-Tuning Prototype & Model README
+
+**17.1 LoRA Training Script**
+- Added `src/train_lora.py` with PEFT LoraConfig defaults (r=16, alpha=32, dropout=0.05) and Trainer integration.
+
+**17.2 Dependencies**
+- Updated `requirements.txt` to include `peft` and `accelerate` for LoRA support.
+
+**17.3 Documentation**
+- Documented LoRA usage in `docs/usage.rst` under "LoRA Fine-Tuning".
+- Created `models/README.md` with base model rationale and LoRA adapter details.
+
+**17.4 Unit Tests**
+- Added `tests/test_train_lora.py` to verify minimal LoRA training flow with stubs.
+
+At end of day, run a small prototype on 500 samples to validate the LoRA pipeline and log initial adapter losses.
+
+## Action 18: Prototype LoRA Run & Validation (Next Steps)
+
+**18.1 Sample Data Execution**
+- Generate `data/processed/train_small.jsonl` via `head -n 500`.
+- Execute `python src/train_lora.py --train_file data/processed/train_small.jsonl --output_dir models/lora_test`.
+
+**18.2 Validation**
+- Confirm training loss decreases over epochs.
+- Inspect sample generations (use `transformers` ChatPipeline) for coherence.
+
+**18.3 Update Model Card**
+- Record prototype results and challenges in `models/model_card.md`.
+
+At conclusion, integrate full dataset training under Action 19.

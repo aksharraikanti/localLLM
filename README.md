@@ -63,6 +63,27 @@ python scripts/train_model.py \
 ```
 
 Fill in hyperparameters in `configs/train_config.yaml` as needed.
+### LoRA Adapter Fine-Tuning
+
+For light-weight adapter tuning on the Llama-2 chat model base, use the `src/train_lora.py` script:
+
+```bash
+# Prototype on a small subset (500 samples)
+head -n 500 data/processed/train.jsonl > data/processed/train_small.jsonl
+python src/train_lora.py \
+  --train_file data/processed/train_small.jsonl \
+  --output_dir models/lora_test
+
+# Full adapter training with validation logging to TensorBoard
+python src/train_lora.py \
+  --train_file data/processed/train.jsonl \
+  --validation_file data/processed/val.jsonl \
+  --output_dir models/lora_adapter \
+  --report_to tensorboard
+
+# Monitor training metrics:
+tensorboard --logdir runs/
+```
 
 ## Hyperparameter Search
 
