@@ -32,3 +32,9 @@ ONNX Export
 
 .. automodule:: src.export_onnx
    :members:
+
+Triton Kernel Tuning
+--------------------
+
+.. automodule:: src.triton_tune
+   :members:

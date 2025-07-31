@@ -18,7 +18,19 @@ bitsandbytes
 onnxruntime
 optimum
 # ONNX export dependency
+# ONNX export dependency
 optimum[exporters]
+
+# FlashAttention (optional fast attention)
+# FlashAttention (optional fast attention)
+flash-attn
+
+# Benchmarking dependencies
+# Benchmarking dependencies
+numpy
+
+# Triton kernel tuning (optional)
+triton
 
 # Evaluation metrics dependencies
 evaluate

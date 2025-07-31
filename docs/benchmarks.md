@@ -6,17 +6,19 @@
 - Size on disk: *TBD*
 - Memory footprint (GPU/CPU): *TBD*
 
-## Inference Latencies
+## Inference Benchmarks
 
-Benchmark ONNX vs PyTorch on 20 sample prompts. Record average latencies:
-
-| Engine     | Avg latency (ms) |
-|------------|------------------|
-| PyTorch    | TBD              |
-| ONNXRuntime| TBD              |
+Refer to `docs/benchmarks.csv` for end-to-end latency comparisons:
+```csv
+engine,avg_latency_ms
+pytorch,XXX
+pytorch+flash,YYY
+onnx,ZZZ
+```
 
 ## FlashAttention Speedup
 
 - FlashAttention enabled via `flash_attn_unpadded`: TBD× speedup
 
-Documentation and charts to be added as experiments complete.
+# FlashAttention Integration
+- Add FlashAttention benchmark results to `docs/benchmarks.csv` once measurements are complete.

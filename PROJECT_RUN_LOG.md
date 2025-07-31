@@ -312,3 +312,29 @@ At end of day, run `src/quantize.py` on sample prompts and update quant_stats an
 - Benchmarks file `docs/benchmarks.md` includes placeholder for ONNX vs PyTorch latencies.
 
 At end of day, execute ONNX export and measure inference latencies, then record results.
+
+## Action 22: FlashAttention & Triton Kernel Tuning
+
+**22.1 FlashAttention Benchmark**
+- Update `src/benchmark_infer.py` to compare PyTorch with and without FlashAttention.
+
+**22.2 ONNX vs Triton**
+- Integrate Triton kernel tuning for onnxruntime or PyTorch GPU inference (if available).
+
+**22.3 Results Recording**
+- Populate `docs/benchmarks.csv` and update `docs/benchmarks.md` with measured speedups.
+
+At end of day, finalize Triton vs ONNX vs FlashAttention benchmarks under Action 23.
+
+## Action 23: Triton Kernel Tuning & Final Benchmarking
+
+**23.1 Triton Tuning Script**
+- Added `src/triton_tune.py` to scaffold Triton kernel tuning (detect availability, placeholder harness).
+
+**23.2 Tests for Triton Tuning**
+- Added `tests/test_triton_tune.py` to verify skip and error paths when Triton is or isn't installed.
+
+**23.3 Usage Docs**
+- Updated `docs/usage.rst` with Triton tuning section.
+
+At end of day, run Triton tuning on GPU, compare results against ONNX and FlashAttention, then update benchmarks.
