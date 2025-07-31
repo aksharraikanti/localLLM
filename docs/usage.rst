@@ -26,3 +26,9 @@ Quantization & Evaluation
 
 .. automodule:: src.quantize
    :members:
+
+ONNX Export
+-----------
+
+.. automodule:: src.export_onnx
+   :members:

@@ -17,6 +17,8 @@ optuna
 bitsandbytes
 onnxruntime
 optimum
+# ONNX export dependency
+optimum[exporters]
 
 # Evaluation metrics dependencies
 evaluate

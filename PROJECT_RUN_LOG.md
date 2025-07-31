@@ -298,3 +298,17 @@ At conclusion, integrate full dataset training under Action 19.
 - Created `docs/benchmarks.md` and `eval/quant_stats.md` to record size and latency stats.
 
 At end of day, run `src/quantize.py` on sample prompts and update quant_stats and benchmarks accordingly.
+
+## Action 21: ONNX Export & Inference Benchmarks
+
+**21.1 ONNX Export Script**
+- Added `src/export_onnx.py` to convert 8-bit adapter model to ONNX via `optimum.exporters.onnx`.
+
+**21.2 Tests for Export**
+- Added `tests/test_export_onnx.py` to verify the export script invocation and output messaging.
+
+**21.3 Documentation Update**
+- Updated `docs/usage.rst` with ONNX Export section.
+- Benchmarks file `docs/benchmarks.md` includes placeholder for ONNX vs PyTorch latencies.
+
+At end of day, execute ONNX export and measure inference latencies, then record results.
