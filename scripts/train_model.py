@@ -6,13 +6,8 @@ import argparse
 
 import yaml
 from datasets import load_from_disk
-from transformers import (
-    AutoModelForSeq2SeqLM,
-    AutoTokenizer,
-    DataCollatorForSeq2Seq,
-    Trainer,
-    TrainingArguments,
-)
+from transformers import (AutoModelForSeq2SeqLM, AutoTokenizer,
+                          DataCollatorForSeq2Seq, Trainer, TrainingArguments)
 
 
 def train_model(

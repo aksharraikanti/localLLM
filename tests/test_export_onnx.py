@@ -11,6 +11,7 @@ def test_export_onnx_dry_run(monkeypatch, tmp_path, capsys):
     # create dummy model directory
     model_dir.mkdir()
 
+    # stub ONNX convert function
     # stub convert function
     monkeypatch.setattr(
         "src.export_onnx.onnx_exporter.convert", lambda model, output, **kw: None

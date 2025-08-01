@@ -62,7 +62,7 @@ def predict(req: InferenceRequest):
     if not outputs:
         raise HTTPException(
             status_code=500,
-            detail="Model failed to generate an output. Please try again or check the input."
+            detail="Model failed to generate an output. Please try again or check the input.",
         )
     answer = tokenizer.decode(outputs[0], skip_special_tokens=True)
     return InferenceResponse(answer=answer)

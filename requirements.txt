@@ -23,14 +23,14 @@ optimum[exporters]
 
 # FlashAttention (optional fast attention)
 # FlashAttention (optional fast attention)
-flash-attn
+#flash-attn
 
 # Benchmarking dependencies
 # Benchmarking dependencies
 numpy
 
 # Triton kernel tuning (optional)
-triton
+#triton
 
 # Evaluation metrics dependencies
 evaluate

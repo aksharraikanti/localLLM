@@ -25,30 +25,11 @@ def benchmark_pytorch(model_dir: str, prompts, max_length: int):
     model = AutoModelForCausalLM.from_pretrained(model_dir).to(device)
     times = []
     for prompt in prompts:
-        inputs = tokenizer(prompt, return_tensors="pt").to(device)
+        # Tokenize and move tensors to target device
+        raw_inputs = tokenizer(prompt, return_tensors="pt")
+        inputs = {k: v.to(device) for k, v in raw_inputs.items()}
         start = time.time()
         _ = model.generate(**inputs, max_length=max_length)
-        times.append((time.time() - start) * 1000)
-    return float(np.mean(times))
-
-
-def benchmark_onnx(onnx_path: str, prompts, max_length: int):
-    if ort is None:
-        raise RuntimeError("onnxruntime is required for ONNX benchmarking")
-    session = ort.InferenceSession(onnx_path, providers=["CPUExecutionProvider"])
-    # assume tokenizer same as model
-    # use a dummy tokenizer for input shape inference
-    for prompt in prompts:
-        # we only measure session.run overhead for inputs
-        break
-    times = []
-    for prompt in prompts:
-        # placeholder: real generation via ONNX not implemented
-        inputs = {
-            inp.name: np.array([[1]], dtype=np.int64) for inp in session.get_inputs()
-        }
-        start = time.time()
-        _ = session.run(None, inputs)
         times.append((time.time() - start) * 1000)
     return float(np.mean(times))
 
@@ -60,7 +41,6 @@ def main():
     parser.add_argument(
         "--model-dir", required=True, help="Path to PyTorch model directory"
     )
-    parser.add_argument("--onnx-model", required=True, help="Path to ONNX model file")
     parser.add_argument(
         "--prompts", required=True, help="JSON file with {'prompts': [...]}."
     )
@@ -82,9 +62,6 @@ def main():
         # re-run PyTorch to measure with FA enabled
         fatime = benchmark_pytorch(args.model_dir, prompts, args.max_length)
         results.append(("pytorch+flash", fatime))
-    # ONNX
-    ortime = benchmark_onnx(args.onnx_model, prompts, args.max_length)
-    results.append(("onnx", ortime))
 
     # Write CSV
     out_dir = args.output_csv.rsplit("/", 1)[0]
